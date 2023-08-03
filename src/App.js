@@ -12,16 +12,20 @@ function App() {
 fetch(BASE_URL)
 .then(res => res.json())
 .then(data => {
-  setCurrencyOptions([])
+  setCurrencyOptions([data.base, ...Object.keys(data.rates)])
 })
   }, [])
 
   return (
     <>
     <h1>Currency Converter</h1>
-    <CurrencyRow />
+    <CurrencyRow 
+    currencyOptions = {currencyOptions}
+    />
     <div className='equals'>=</div>
-    <CurrencyRow />
+    <CurrencyRow 
+        currencyOptions = {currencyOptions}
+        />
   </>
     );
 }
